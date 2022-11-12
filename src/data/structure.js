@@ -12,6 +12,15 @@ import { GiLouvrePyramid } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
 
 
+export const gridOrderImage = (props) => (
+  <div>
+    <img
+      className="rounded-xl h-20 md:ml-3"
+      src={props.ProductImage}
+      alt="order-item"
+    />
+  </div>
+);
 
 export const links = [
     {
@@ -58,4 +67,49 @@ export const links = [
         ],
       },
   ];
+
+  export const activeBidsData = [
+    {
+      Id: "10248",
+      Tür: 'Elektronik',
+      Açıklama: 'Depolama Ünitesi',
+      Birimi: 'adet',
+      ÜrünKod: 123,
+    },
+  ]
+
+  export const activeBidsGrid = [
+    
+    {
+      field: 'OrderItems',
+      headerText: 'Kontrat Adres',
+      width: '150',
+      textAlign: 'Center',
+    },
+    { field: 'Kurum',
+      headerText: 'Tür',
+      width: '150',
+      editType: 'dropdownedit',
+      textAlign: 'Center',
+    },
+    {
+      field: 'OrderItems',
+      headerText: 'Açıklama',
+      width: '150',
+      textAlign: 'Center',
+    },
+    { field: 'CustomerName',
+      headerText: 'Birim',
+      width: '150',
+      editType: 'dropdownedit',
+      textAlign: 'Center',
+    },
+    {
+      field: 'Ürün Kod',
+      headerText: 'Bitiş Tarihi',
+      width: '150',
+      textAlign: 'Center',
+    },
+    
+  ]
   
