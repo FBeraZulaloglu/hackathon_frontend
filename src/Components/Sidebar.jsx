@@ -10,6 +10,9 @@ import {useStateContext} from '../contexts/ContextProvider'
 
 function Sidebar() {
   
+  const ekapb_competence = '0x67cD43559078521314Cebf9f9f049b4B9E1fB871'
+
+  
   //const linkType = links
   const {activeMenu,setActiveMenu,screenSize} = useStateContext();
 
