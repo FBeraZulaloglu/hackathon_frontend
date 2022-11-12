@@ -1,18 +1,33 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link, NavLink } from 'react-router-dom';
 // Icons
 import { SiShopware } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import edevlet from '../data/e_devlet.png'
-import {links} from '../data/structure'
+import {privateLinks,publicLinks} from '../data/structure'
 import {useStateContext} from '../contexts/ContextProvider'
+import {ethers} from 'ethers'
+import competence_abi from '../data/competence_abi.json'
 
 function Sidebar() {
   
   const ekapb_competence = '0x67cD43559078521314Cebf9f9f049b4B9E1fB871'
-
   
+
+  const [contractInfo, setContractInfo] = useState(false);
+
+  const getTokenInfo = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const competenceC = new ethers.Contract(ekapb_competence, competence_abi, provider);
+
+    const isCompanyCheck = await competenceC.getCompetence('0xd60784072b039d17d2267b00629b9a695909063c',123);
+    
+    setContractInfo(isCompanyCheck);
+    console.log(contractInfo)
+  };
+
+  getTokenInfo();
   //const linkType = links
   const {activeMenu,setActiveMenu,screenSize} = useStateContext();
 
@@ -49,7 +64,9 @@ function Sidebar() {
         
 
         <div className='mt-10'>
-        {links.map((item) => (
+        {
+        contractInfo ?
+        privateLinks.map((item) => (
           <div key = {item.title} > 
               <p className='text-gray-400 m-3 mt-4 uppercase'> 
                 {item.title}
@@ -69,7 +86,32 @@ function Sidebar() {
                 </NavLink>
               ))}
             </div>
-          ))}
+          ))
+          :
+          publicLinks.map((item) => (
+            <div key = {item.title} > 
+                <p className='text-gray-400 m-3 mt-4 uppercase'> 
+                  {item.title}
+                </p>
+                {item.links.map((link) => (
+                  <NavLink
+                        to = {`/${link.linkName}`}
+                        key={link.linkName}
+                        onClick={handleCloseSideBar}
+                        className = {({isActive}) => 
+                        isActive ? activeLink : normalLink}>
+                          {link.icon}
+                          <span className='capitalize'>
+                            {link.name}
+                          </span>
+  
+                  </NavLink>
+                ))}
+              </div>
+            ))
+        
+        
+        }
         </div>
       </>
 

@@ -22,7 +22,37 @@ export const gridOrderImage = (props) => (
   </div>
 );
 
-export const links = [
+export const publicLinks = [
+    {
+      title: 'Ana Sayfa',
+      links: [
+        {
+          name: 'MainPage',
+          linkName:'',
+          icon: <FiShoppingBag />,
+        },
+      ],
+    },
+  
+    {
+      title: 'İhaleler',
+      links: [
+        
+        {
+          name: 'Aktif İhaleler',
+          linkName:'activeBids',
+          icon: <AiOutlineShoppingCart />,
+        },
+        {
+          name: 'Geçmiş İhaleler',
+          linkName:'passiveBids',
+          icon: <IoMdContacts />,
+        },
+      ],
+    },
+  ];
+
+  export const privateLinks = [
     {
       title: 'Ana Sayfa',
       links: [
