@@ -10,7 +10,6 @@ import {useStateContext} from '../contexts/ContextProvider'
 
 function Sidebar() {
   
-  const privateUser = false
   //const linkType = links
   const {activeMenu,setActiveMenu,screenSize} = useStateContext();
 
@@ -25,9 +24,7 @@ function Sidebar() {
   const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2';
 
   return (
-    <div className='ml3 h-screen 
-    ml:overflow-hidden overflow-auto
-    md:hover:overflow-auto pb-10'>
+    <div className='ml3 h-screen ml:overflow-hidden overflow-auto md:hover:overflow-auto pb-10'>
       {activeMenu && (<>
         <div className='flex justify-between items-center'>
           <Link to='/' onClick={handleCloseSideBar}
@@ -46,10 +43,34 @@ function Sidebar() {
             </button>
           </TooltipComponent>
         </div>
-        </>
-      )}
+        
 
-      
+        <div className='mt-10'>
+        {links.map((item) => (
+          <div key = {item.title} > 
+              <p className='text-gray-400 m-3 mt-4 uppercase'> 
+                {item.title}
+              </p>
+              {item.links.map((link) => (
+                <NavLink
+                      to = {`/${link.linkName}`}
+                      key={link.linkName}
+                      onClick={handleCloseSideBar}
+                      className = {({isActive}) => 
+                      isActive ? activeLink : normalLink}>
+                        {link.icon}
+                        <span className='capitalize'>
+                          {link.name}
+                        </span>
+
+                </NavLink>
+              ))}
+            </div>
+          ))}
+        </div>
+      </>
+
+      )}
       </div>
   )}
 

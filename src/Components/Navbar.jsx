@@ -1,4 +1,6 @@
-import React, {useEffect} from 'react'
+import React, {useState,useEffect} from 'react'
+import {ethers} from 'ethers'
+import SimpleStore_abi from '../data/SimpleScore_abi.json'
 import {AiOutlineMenu} from 'react-icons/ai'
 import {FiShoppingCart} from 'react-icons/fi'
 import {BsChatLeft} from 'react-icons/bs'
@@ -10,7 +12,9 @@ import { useStateContext } from '../contexts/ContextProvider'
 
 import avatar from '../data/metamask.png'
 
+
 function Navbar() {
+  
 
   const {activeMenu,setActiveMenu,screenSize,setScreenSize} = useStateContext();
 
@@ -54,6 +58,7 @@ function Navbar() {
 )
 
   return (
+  
       <div className='flex justify-between p-2 md:mx-6 relative'>
         <NavButton title="Menu" 
                     color='black' 

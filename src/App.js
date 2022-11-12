@@ -13,12 +13,15 @@ import PassiveBids from './pages/PassiveBids';
 import CompanyBids from './pages/CompanyBids';
 import OfferedBids from './pages/OfferBids';
 
+import { useStateContext } from './contexts/ContextProvider';
+
 //import { useStateContext } from './contexts/ContextProvider';
 import './App.css';
 //import Web3 from 'web3'
 
 function App() {
-  const activeMenu = true
+
+  const { activeMenu } = useStateContext();
   //const { activeMenu } = useStateContext();
   const [account, setAccount] = useState('')
 
@@ -81,8 +84,8 @@ function App() {
                 {/* Pages */}
                 <Route path='/activeBids' element={<ActiveBids />} />
                 <Route path='/passiveBids' element={<PassiveBids />} />
-                <Route path='/offeredBids' element={<OfferedBids />} />
-                <Route path='/customers' element={<CompanyBids />} />
+                <Route path='/offerBids' element={<OfferedBids />} />
+                <Route path='/companyBids' element={<CompanyBids />} />
 
               </Routes>
               

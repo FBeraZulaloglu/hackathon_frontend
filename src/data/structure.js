@@ -15,10 +15,11 @@ import { GrLocation } from 'react-icons/gr';
 
 export const links = [
     {
-      title: 'Kullanıcı Tipi',
+      title: 'Ana Sayfa',
       links: [
         {
-          name: 'Ana Sayfa',
+          name: 'MainPage',
+          linkName:'',
           icon: <FiShoppingBag />,
         },
       ],
@@ -27,20 +28,20 @@ export const links = [
     {
       title: 'İhaleler',
       links: [
-        {
-            name: '',
-            icon: <AiOutlineShoppingCart />,
-        },
+        
         {
           name: 'Aktif İhaleler',
+          linkName:'activeBids',
           icon: <AiOutlineShoppingCart />,
         },
         {
           name: 'Geçmiş İhaleler',
+          linkName:'passiveBids',
           icon: <IoMdContacts />,
         },
         {
-          name: 'customers',
+          name: 'İhale Teklifleri',
+          linkName:'offerBids',
           icon: <RiContactsLine />,
         },
       ],
@@ -49,12 +50,9 @@ export const links = [
         title: 'İşlemler',
         links: [
           {
-            name: '',
+            name: 'Şirket Teklifleri',
+            linkName:'companyBids',
             icon: <AiOutlineShoppingCart />,
-          },
-          {
-            name: 'İhale Ekle',
-            icon: <IoMdContacts />,
           },
           
         ],
