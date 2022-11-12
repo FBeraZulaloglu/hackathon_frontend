@@ -12,8 +12,7 @@ import competence_abi from '../data/competence_abi.json'
 
 function Sidebar() {
   
-  const ekapb_competence = '0x67cD43559078521314Cebf9f9f049b4B9E1fB871'
-  
+  const ekapb_competence = '0xee6DE69163e91f943f7FE5429B628a3e50eCe9F2'
 
   const [contractInfo, setContractInfo] = useState(false);
 

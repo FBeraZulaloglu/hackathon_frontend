@@ -40,6 +40,19 @@
 				"type": "address"
 			}
 		],
+		"name": "deleteAuthorized",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
 		"name": "getAuthorized",
 		"outputs": [
 			{
@@ -65,6 +78,19 @@
 				"internalType": "contract EKAPB_SUB",
 				"name": "",
 				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getSubContractCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
