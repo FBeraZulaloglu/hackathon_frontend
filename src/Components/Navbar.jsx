@@ -1,6 +1,10 @@
 import React, {useState,useEffect} from 'react'
 import {ethers} from 'ethers'
-import SimpleStore_abi from '../data/SimpleScore_abi.json'
+
+import competence_abi from '../data/competence_abi.json'
+import main_abi from '../data/main_abi.json'
+import sub_abi from '../data/sub_abi.json'
+
 import {AiOutlineMenu} from 'react-icons/ai'
 import {FiShoppingCart} from 'react-icons/fi'
 import {BsChatLeft} from 'react-icons/bs'
@@ -15,7 +19,10 @@ import avatar from '../data/metamask.png'
 function Navbar() {
 
   // METAMASK
-  const contractAdress = '0x1ddb4c2558237dFd661F9ff79F358862FdBd612f'
+
+  const ekapb_competence = '0x67cD43559078521314Cebf9f9f049b4B9E1fB871'
+
+  const ekapb_main = '0xff64821be58e5A2608a01015Ff55f47b30950893'
 
   const [connbButtonText,setConnectButtonText] = useState("Cüzdana bağlan")
   const [errorMessage,setErrorMessage] = useState(null)
@@ -27,6 +34,24 @@ function Navbar() {
   const [signer,setSigner] = useState(null)
   const [contract,setContract] = useState(null)
 
+
+  const hackathon = {
+    chainId: '0xA868',
+    chainName: 'hackathon_chain',
+    nativeCurrency: {
+      name: 'Avalanche',
+      symbol: 'AVAX',
+      decimals: 18
+    },
+    rpcUrls: ['https://176.236.121.139:9656/ext/bc/C/rpc'],
+    blockExplorerUrls: ['https://explorer.digiathon.com/']
+  }
+
+  // Doğru chaindemi kontrolü yapılır.
+  const isChain = (chainId) => (
+    chainId &&
+    chainId.toLowerCase() === hackathon.chainId.toLowerCase()
+  )
 
   const connectWalletHandler = () =>{
       if (window.ethereum){
@@ -53,7 +78,7 @@ function Navbar() {
       let tempSigner = await tempProvider.getSigner();
       setSigner(tempSigner);
 
-      let tempContract = new ethers.Contract(contractAdress, SimpleStore_abi, tempSigner);
+      let tempContract = new ethers.Contract(ekapb_competence, competence_abi, tempSigner);
       setContract(tempContract);
   }
 
@@ -93,6 +118,9 @@ function Navbar() {
 
   const handleActiveMenu = () => setActiveMenu(!activeMenu)
 
+  window.ethereum.on('chainChanged', () => window.location.reload());
+  window.ethereum.on('accountsChanged', () => window.location.reload());
+
   const NavButton = ({title,customFunc,icon,color,dotColor}) => (
     <TooltipComponent content={title}
                       position="BottomCenter">
@@ -128,12 +156,15 @@ function Navbar() {
                     >
                   
                   <img className="rounded-full w-8 h-8 " src={avatar} alt='user-profile'/>
-
-                  <p>
+                  
+                  <p >
                     {/* <span className="text-gray-400 text-14">Hoşgeldin, </span> */}
                     {' '}
                     <span className='text-gray-400 font-bold ml-1 text-14'>{defaultAccount}</span>
                   </p>
+
+                  <p style={isChain(window.ethereum.chainId) ? { display: "none" } : {}}
+                  >Doğru ağa bağlanamadınız. Lütfen {hackathon.chainName} bağlanınız.</p>
 
                   <MdKeyboardArrowDown className='text-gray-400 text-14'/>
               </div>

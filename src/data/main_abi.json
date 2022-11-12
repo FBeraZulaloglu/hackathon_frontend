@@ -1,0 +1,86 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_tenderDetail",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_tenderPublicKey",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "_competenceIDs",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "address",
+				"name": "_competenceAddress",
+				"type": "address"
+			}
+		],
+		"name": "createTender",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "getAuthorized",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "getSubContract",
+		"outputs": [
+			{
+				"internalType": "contract EKAPB_SUB",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "setAuthorized",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
