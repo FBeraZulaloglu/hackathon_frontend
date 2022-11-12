@@ -7,7 +7,7 @@ import {activeBidsData,activeBidsGrid} from '../data/structure'
 function OfferBids() {
   return (
     <div className='m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl'>
-      <Header category='Page' title='İhale Teklifleri'></Header>
+      <Header category='Page' title='Teklif Verilen İhaleler'></Header>
       <GridComponent id='gridcomp'
                     dataSource={activeBidsData}
                     allowPaging

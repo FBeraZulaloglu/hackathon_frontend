@@ -132,7 +132,7 @@ function Navbar() {
                   <p>
                     {/* <span className="text-gray-400 text-14">Hoşgeldin, </span> */}
                     {' '}
-                    <span className='text-gray-400 font-bold ml-1 text-14'>{"Metamask Adres"}</span>
+                    <span className='text-gray-400 font-bold ml-1 text-14'>{defaultAccount}</span>
                   </p>
 
                   <MdKeyboardArrowDown className='text-gray-400 text-14'/>
