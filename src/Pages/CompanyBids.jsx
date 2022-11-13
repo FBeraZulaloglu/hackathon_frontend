@@ -3,75 +3,69 @@ import { TextBoxComponent } from '@syncfusion/ej2-react-inputs';
 import Header  from '../components/Header'
 import { activeBidsData } from '../data/structure'
 import Button from '../components/Button'
-import {ethers} from 'ethers'
+import { ethers } from 'ethers'
+import main_abi from '../data/main_abi.json'
+import sub_abi from '../data/sub_abi.json'
 
 class CompanyBids extends React.Component {
 
-  render() {
-    
-    function createSha256({tenderPublicKey,bidderPrivateKey,bidderOffer}){
-      tenderPublicKey = '125489632142';
-      const createBytes32 = ethers.utils.formatBytes32String(tenderPublicKey + bidderPrivateKey + bidderOffer);
-      createSha256 = ethers.utils.sha256(createBytes32);
-    }
+  componentDidMount() {
+    const main = '0xB76f9b628B4A2Ab4D63F0C73FdAf6f4C1C7959bA'
+    const hexToDecimal = hex => parseInt(hex, 16);
+    const getCount = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const mainContract = new ethers.Contract(main, main_abi, provider);
+    const userAddress = await window.ethereum.request({method: 'eth_requestAccounts'});
 
-    const prods = ['Kalem', 'Silgi', 'Elma'];
+    const subCount = await mainContract.getSubContractCount();
+    console.log('Sub contract count')
+    console.log(hexToDecimal(subCount))
+    for (var i = 0; i < hexToDecimal(subCount); i++) {
+
+        var subContractAddress = await mainContract.getSubContract(i);
+        const signer = await provider.getSigner();
+        var subContract = new ethers.Contract(subContractAddress, sub_abi, signer);
+        
+
+        var subTenderDetail = await subContract.getTenderDetail();
+        var subBidderControl = await subContract.getBidderControl(userAddress[0]);
+        if(subTenderDetail === "Qmd3hMJ2PDzA7vdSxdXfJ6grPZba8dZ5f4FZqKhL5vXuW3" ){
+
+          var bytes32data = ethers.utils.formatBytes32String("testyazi");
+          console.log(bytes32data);
+          var shaData = ethers.utils.sha256(bytes32data);
+          console.log(shaData);
+          await subContract.setOffer("QmY6i7f4vt6dKfxojwJmR72BUCvY56bBPFFoKSjhVnPovn", shaData);
+
+
+          //await subContract.setOffer("QmY6i7f4vt6dKfxojwJmR72BUCvY56bBPFFoKSjhVnPovn", 0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08);
+        }
+        console.log(subBidderControl);
+        console.log(subTenderDetail);
+
+        // eğer subBidderControl true ise verileri yazdır.
+
+      /* this.data.activeBidsData.push({
+        ContratId: "10248",
+        CompanyType: 'Elektronik',
+        Explanation: 'Açıklama...',
+        Unit: 'adet',
+        ProductCode: 123,
+        İhale: 'İhale',
+      });
+      */
+      
+    }
+  };
+  getCount();
+  }
+
+
+  render() {
 
     return (
       <div className='m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl'>
-          
-        {/* ListView element */}
-        <div class="float-container">
-
-          <div class="float-child">
-            {
-              prods.map((i) => 
-              (
-                <p className='text-black-300 m-2 mt-1 uppercase'>{i}</p>
-              ))
-            }
-          
-          </div>
-          
-          <div class="float-child">
-          {
-              prods.map((i) => 
-              (
-                <input className="e-input" type="text" onFocus={this.floatFocus} onBlur={this.floatBlur} placeholder="Ürün giriniz" />
-              ))
-            }
-            
-          </div>
-        
-        </div>
-
-        <Button color='White'
-              bgColor='Blue'
-              borderRadius='10px'
-              size='md'
-              text='Download'>
-        </Button>
-
-        <div className='control-section input-content-wrapper'>
-          <div className="col-xs-6 col-sm-6 col-lg-6 col-md-6"><b>PRIVATE KEY</b></div>
-          <TextBoxComponent placeholder="Private key giriniz." cssClass="e-outline" floatLabelType="Auto" />
-        </div>
-
-        <div className="row custom-margin">
-          <div className="m-1 col-xs-6 col-sm-6 col-rg-6 col-md-6"><b>TEKLİF FİYATI</b></div>
-          <TextBoxComponent placeholder="Teklif ifyatınızı yazınız." cssClass="e-outline" floatLabelType="Auto" />
-        </div>
-
-        <div className="row custom-margin">
-          <div className=" col-xs-6 col-sm-6 col-lg-6 col-md-6"><b>SHA-256</b></div>
-          <TextBoxComponent placeholder="SHA-256 kodunu giriniz." cssClass="e-outline" floatLabelType="Auto" />
-        </div>
-
-        <div className="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-          <div className="e-input-group e-disabled">
-            <input className="e-input" type="text" value="Readonly"  placeholder="SHA-256 Girişi" />
-          </div>
-        </div>
+         
 
       </div>
     )

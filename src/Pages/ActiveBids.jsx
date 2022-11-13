@@ -49,6 +49,10 @@ export default class ActiveBids extends React.Component {
         var subTenderDetail = await subContract.getTenderDetail();
         console.log(subTenderDetail);
 
+        var subTenderStatus = await subContract.getTenderStatus();
+        console.log(subTenderStatus)
+        var subBidStart = await subContract.getBidStart();
+        console.log(subBidStart)
         // eğer getTenderStatus == true ise ve getBidStart == true ise veriyi al.
 
       /* this.data.activeBidsData.push({
