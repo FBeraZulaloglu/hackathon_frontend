@@ -52,7 +52,48 @@ export const publicLinks = [
     },
   ];
 
-  export const privateLinks = [
+  export const competenceLinks = [
+    {
+      title: 'Ana Sayfa',
+      links: [
+        {
+          name: 'MainPage',
+          linkName:'',
+          icon: <FiShoppingBag />,
+        },
+      ],
+    },
+  
+    {
+      title: 'İhaleler',
+      links: [
+        
+        {
+          name: 'Aktif İhaleler',
+          linkName:'activeBids',
+          icon: <AiOutlineShoppingCart />,
+        },
+        {
+          name: 'Geçmiş İhaleler',
+          linkName:'passiveBids',
+          icon: <IoMdContacts />,
+        },
+      ],
+    },
+    {
+      title: 'İşlemler',
+      links: [
+        {
+          name: 'Şirket Teklifleri',
+          linkName:'companyBids',
+          icon: <AiOutlineShoppingCart />,
+        },
+        
+      ],
+    },
+  ];
+
+  export const companyLinks = [
     {
       title: 'Ana Sayfa',
       links: [

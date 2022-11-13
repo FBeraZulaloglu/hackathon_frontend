@@ -5,28 +5,48 @@ import { SiShopware } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import edevlet from '../data/e_devlet.png'
-import {privateLinks,publicLinks} from '../data/structure'
+import {companyLinks,competenceLinks,publicLinks} from '../data/structure'
 import {useStateContext} from '../contexts/ContextProvider'
 import {ethers} from 'ethers'
 import competence_abi from '../data/competence_abi.json'
+import company_abi from '../data/main_abi.json'
 
 function Sidebar() {
   
   const ekapb_competence = '0xee6DE69163e91f943f7FE5429B628a3e50eCe9F2'
 
-  const [contractInfo, setContractInfo] = useState(false);
+  const [competencetInfo, setCompetenceInfo] = useState(false);
+  const [companyInfo, setCompanyInfo] = useState(false);
 
-  const getTokenInfo = async () => {
+  const getCompetenceInfo = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const competenceC = new ethers.Contract(ekapb_competence, competence_abi, provider);
 
-    const isCompanyCheck = await competenceC.getCompetence('0xd60784072b039d17d2267b00629b9a695909063c',123);
+    const isCompetenceCheck = await competenceC.getCompetence('0xd60784072b039d17d2267b00629b9a695909063c',123);
     
-    setContractInfo(isCompanyCheck);
-    console.log(contractInfo)
+    setCompetenceInfo(isCompetenceCheck);
+    console.log('Competence')
+    console.log(competencetInfo)
+
   };
 
-  getTokenInfo();
+  getCompetenceInfo();
+
+  const ekapb_company = '0xB76f9b628B4A2Ab4D63F0C73FdAf6f4C1C7959bA'
+
+  const getCompanyInfo = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const companyC = new ethers.Contract(ekapb_company, company_abi, provider);
+
+    const isCompanyCheck = await companyC.getAuthorized('0xd60784072b039d17d2267b00629b9a695909063c');
+    
+    setCompanyInfo(isCompanyCheck);
+    console.log('Company')
+    console.log(companyInfo)
+
+  };
+
+  getCompanyInfo()
   //const linkType = links
   const {activeMenu,setActiveMenu,screenSize} = useStateContext();
 
@@ -64,8 +84,8 @@ function Sidebar() {
 
         <div className='mt-10'>
         {
-        contractInfo ?
-        privateLinks.map((item) => (
+        competencetInfo ?
+        competenceLinks.map((item) => (
           <div key = {item.title} > 
               <p className='text-gray-400 m-3 mt-4 uppercase'> 
                 {item.title}

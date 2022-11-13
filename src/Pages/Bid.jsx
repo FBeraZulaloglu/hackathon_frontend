@@ -5,9 +5,27 @@ import { activeBidsData } from '../data/structure'
 import Button from '../components/Button'
 import {ethers} from 'ethers'
 
-class CompanyBids extends React.Component {
+class Bids extends React.Component {
+
+
+  floatFocus(args) {
+    args.target.parentElement.classList.add('e-input-focus');
+  }
+  floatBlur(args) {
+    args.target.parentElement.classList.remove('e-input-focus');
+  }
+  onIconClick(args) {
+    args.persist();
+    setTimeout(() => {
+      args.target.classList.add('e-input-btn-ripple');
+    }, 500);
+  }
+  onIconUnClick(args) {
+    args.target.classList.remove('e-input-btn-ripple');
+  }
 
   render() {
+    
     
     function createSha256({tenderPublicKey,bidderPrivateKey,bidderOffer}){
       tenderPublicKey = '125489632142';
@@ -69,7 +87,7 @@ class CompanyBids extends React.Component {
 
         <div className="col-xs-12 col-sm-12 col-lg-12 col-md-12">
           <div className="e-input-group e-disabled">
-            <input className="e-input" type="text" value="Readonly"  placeholder="SHA-256 Girişi" />
+            <input className="e-input" type="text" value="Readonly" onFocus={this.floatFocus} onBlur={this.floatBlur} placeholder="SHA-256 Girişi" />
           </div>
         </div>
 
@@ -79,4 +97,4 @@ class CompanyBids extends React.Component {
 }
 
 
-export default CompanyBids
+export default Bids
