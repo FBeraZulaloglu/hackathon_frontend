@@ -22,7 +22,7 @@ function Navbar() {
 
   const ekapb_competence = '0x67cD43559078521314Cebf9f9f049b4B9E1fB871'
 
-  const ekapb_main = '0xff64821be58e5A2608a01015Ff55f47b30950893'
+  const ekapb_main = '0x06F945BD37c8eBf5D98E374Af63BeF3B981FB997'
 
   const [connbButtonText,setConnectButtonText] = useState("Cüzdana bağlan")
   const [errorMessage,setErrorMessage] = useState(null)
@@ -140,7 +140,7 @@ function Navbar() {
 
   return (
   
-      <div className='flex justify-between p-2 md:mx-6 relative'>
+      <div className='flex justify-between p-2 md:mx-6 relative '>
         <NavButton title="Menu" 
                     color='black' 
                     icon = {<AiOutlineMenu/>}

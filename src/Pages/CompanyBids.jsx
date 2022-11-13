@@ -10,7 +10,7 @@ import sub_abi from '../data/sub_abi.json'
 class CompanyBids extends React.Component {
 
   componentDidMount() {
-    const main = '0xB76f9b628B4A2Ab4D63F0C73FdAf6f4C1C7959bA'
+    const main = '0x06F945BD37c8eBf5D98E374Af63BeF3B981FB997'
     const hexToDecimal = hex => parseInt(hex, 16);
     const getCount = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -35,7 +35,7 @@ class CompanyBids extends React.Component {
           console.log(bytes32data);
           var shaData = ethers.utils.sha256(bytes32data);
           console.log(shaData);
-          await subContract.setOffer("QmY6i7f4vt6dKfxojwJmR72BUCvY56bBPFFoKSjhVnPovn", shaData);
+          //await subContract.setOffer("QmY6i7f4vt6dKfxojwJmR72BUCvY56bBPFFoKSjhVnPovn", shaData);
 
 
           //await subContract.setOffer("QmY6i7f4vt6dKfxojwJmR72BUCvY56bBPFFoKSjhVnPovn", 0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08);

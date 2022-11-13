@@ -20,11 +20,6 @@
 				"internalType": "uint256[]",
 				"name": "_competenceIDs",
 				"type": "uint256[]"
-			},
-			{
-				"internalType": "address",
-				"name": "_competenceAddress",
-				"type": "address"
 			}
 		],
 		"name": "createTender",
@@ -59,6 +54,19 @@
 				"internalType": "bool",
 				"name": "",
 				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getCompetenceAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -105,6 +113,19 @@
 			}
 		],
 		"name": "setAuthorized",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "setCompetenceAddress",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

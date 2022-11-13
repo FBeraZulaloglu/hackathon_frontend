@@ -32,7 +32,7 @@ export default class ActiveBids extends React.Component {
   componentDidMount() {
 
     console.log('Active bids has mounted')
-    const main = '0xB76f9b628B4A2Ab4D63F0C73FdAf6f4C1C7959bA'
+    const main = '0x06F945BD37c8eBf5D98E374Af63BeF3B981FB997'
     const hexToDecimal = hex => parseInt(hex, 16);
     const getCount = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -50,11 +50,35 @@ export default class ActiveBids extends React.Component {
         console.log(subTenderDetail);
 
         var subTenderStatus = await subContract.getTenderStatus();
+        console.log('subTenderStatus')
         console.log(subTenderStatus)
         var subBidStart = await subContract.getBidStart();
+        console.log('subBidStart')
         console.log(subBidStart)
         // eğer getTenderStatus == true ise ve getBidStart == true ise veriyi al.
+        if(subTenderStatus===true && subBidStart===false){
+          var axios = require('axios');
+          console.log('axios')
+          var config = {
+            method: 'get',
+            url: 'https://api.web3.storage/car/bafybeiaserl33h3aadr7gx434ond6a7q7y4xjqosos2ui2z77x3nm6shtm',
+            headers: { 
+              'Access-Control-Allow-Origin' : '*',
+            },
+          };
 
+          const res = await axios(config)
+          console.log('Data:')
+          console.log(res.data);
+        }
+        activeBidsData.push({
+          ContratId: "10248",
+          CompanyType: 'Elektronik',
+          Explanation: 'Açıklama...',
+          Unit: 'adet',
+          ProductCode: 123,
+          İhale: 'İhale',
+        })
       /* this.data.activeBidsData.push({
         ContratId: "10248",
         CompanyType: 'Elektronik',
@@ -88,7 +112,7 @@ export default class ActiveBids extends React.Component {
 
         <Link to="/Bid" className="btn btn-primary">İhaleye Başvur</Link>
         <GridComponent id='gridcomp'
-          dataSource={this.data.activeBidsData}
+          dataSource={activeBidsData}
           allowPaging
           allowSorting
           toolbar={['Search']}

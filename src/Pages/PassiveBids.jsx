@@ -9,7 +9,7 @@ import sub_abi from '../data/sub_abi.json'
 function PassiveBids() {
 
   const componentDidMount = () => {
-    const main = '0xB76f9b628B4A2Ab4D63F0C73FdAf6f4C1C7959bA'
+    const main = '0x06F945BD37c8eBf5D98E374Af63BeF3B981FB997'
     const hexToDecimal = hex => parseInt(hex, 16);
     const getCount = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);

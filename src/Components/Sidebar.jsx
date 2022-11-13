@@ -32,7 +32,7 @@ function Sidebar() {
 
   getCompetenceInfo();
 
-  const ekapb_company = '0xB76f9b628B4A2Ab4D63F0C73FdAf6f4C1C7959bA'
+  const ekapb_company = '0x06F945BD37c8eBf5D98E374Af63BeF3B981FB997'
 
   const getCompanyInfo = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
