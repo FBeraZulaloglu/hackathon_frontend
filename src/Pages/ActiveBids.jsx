@@ -24,12 +24,14 @@ export default class ActiveBids extends React.Component {
       alert(selectedrowindex + " : " + JSON.stringify(selectedrecords));
     }
   }
-
+  currentData = ""
   data = {
     activeBidsData: []
   };
 
   componentDidMount() {
+
+    this.data.activeBidsData = []
 
     console.log('Active bids has mounted')
     const main = '0x06F945BD37c8eBf5D98E374Af63BeF3B981FB997'
@@ -61,7 +63,7 @@ export default class ActiveBids extends React.Component {
           console.log('axios')
           var config = {
             method: 'get',
-            url: 'https://api.web3.storage/car/bafybeiaserl33h3aadr7gx434ond6a7q7y4xjqosos2ui2z77x3nm6shtm',
+            url: 'https://api.web3.storage/car/'+subTenderDetail,
             headers: { 
               'Access-Control-Allow-Origin' : '*',
             },
@@ -69,26 +71,21 @@ export default class ActiveBids extends React.Component {
 
           const res = await axios(config)
           console.log('Data:')
-          console.log(res.data);
+          const last_data = res.data.replace(res.data.split('"',2)[0],'');
+          console.log('{'+last_data)
+          const last_json = JSON.parse('{'+last_data)
+          this.currentData = last_json
         }
+        console.log(this.currentData)
+        
         activeBidsData.push({
-          ContratId: "10248",
-          CompanyType: 'Elektronik',
-          Explanation: 'Açıklama...',
-          Unit: 'adet',
-          ProductCode: 123,
-          İhale: 'İhale',
+          ContractId: 128,
+          CompanyName: this.currentData.kurum_adi,
+          Explanation: this.currentData.sozlesmeKonu,
+          FinishDate: this.currentData.urun_teslim_tarihi,
         })
-      /* this.data.activeBidsData.push({
-        ContratId: "10248",
-        CompanyType: 'Elektronik',
-        Explanation: 'Açıklama...',
-        Unit: 'adet',
-        ProductCode: 123,
-        İhale: 'İhale',
-      });
-      */
-      
+
+        this.grid.dataSource.concat(activeBidsData)
     }
     };
 
@@ -120,7 +117,8 @@ export default class ActiveBids extends React.Component {
           rowSelected={this.rowSelected} ref={g => this.grid = g}
         >
           <ColumnsDirective>
-            {activeBidsGrid.map((item, index) => (
+            {
+              activeBidsGrid.map((item, index) => (
               <ColumnDirective key={index} {...item} />
             ))}
           </ColumnsDirective>

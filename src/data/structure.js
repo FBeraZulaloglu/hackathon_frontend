@@ -141,24 +141,22 @@ export const publicLinks = [
 
   export const activeBidsData = [
     {
-      ContratId: "10248",
-      CompanyType: 'Elektronik',
+      ContractId: "10248",
+      CompanyName: 'Elektronik',
       Explanation: 'Açıklama...',
-      Unit: 'adet',
-      ProductCode: 123,
-      İhale: 'İhale',
+      FinishDate: '10 kasıma kadar',
     },
   ]
 
   export const activeBidsGrid = [
     
     {
-      field: 'ContratId',
+      field: 'ContractId',
       headerText: 'Kontrat Adres',
       width: '150',
       textAlign: 'Center',
     },
-    { field: 'CompanyType',
+    { field: 'CompanyName',
       headerText: 'Tür',
       width: '150',
       editType: 'dropdownedit',
@@ -170,20 +168,11 @@ export const publicLinks = [
       width: '150',
       textAlign: 'Center',
     },
-    { field: 'Unit',
+    { field: 'FinishDate',
       headerText: 'Birim',
       width: '150',
       editType: 'dropdownedit',
       textAlign: 'Center',
-    },
-    {
-      field: 'ProductCode',
-      headerText: 'Ürün Kod',
-      width: '150',
-      textAlign: 'Center',
-    },
-    {
-      type: 'button',width:'50'
     },
     
   ]

@@ -107,7 +107,7 @@ function Sidebar() {
             </div>
           ))
           :
-          publicLinks.map((item) => (
+          competenceLinks.map((item) => (
             <div key = {item.title} > 
                 <p className='text-gray-400 m-3 mt-4 uppercase'> 
                   {item.title}
