@@ -25,8 +25,8 @@ function Sidebar() {
     const isCompetenceCheck = await competenceC.getCompetence('0xd60784072b039d17d2267b00629b9a695909063c',123);
     
     setCompetenceInfo(isCompetenceCheck);
-    console.log('Competence')
-    console.log(competencetInfo)
+    //console.log('Competence')
+    //console.log(competencetInfo)
 
   };
 
@@ -41,8 +41,8 @@ function Sidebar() {
     const isCompanyCheck = await companyC.getAuthorized('0xd60784072b039d17d2267b00629b9a695909063c');
     
     setCompanyInfo(isCompanyCheck);
-    console.log('Company')
-    console.log(companyInfo)
+    //console.log('Company')
+    //console.log(companyInfo)
 
   };
 

@@ -8,6 +8,7 @@ import Header from '../components/Header'
 import Button from '../components/Button'
 import { ethers } from 'ethers'
 import main_abi from '../data/main_abi.json'
+import sub_abi from '../data/sub_abi.json'
 
 import { activeBidsData, activeBidsGrid } from '../data/structure'
 
@@ -34,26 +35,33 @@ export default class ActiveBids extends React.Component {
     const main = '0xB76f9b628B4A2Ab4D63F0C73FdAf6f4C1C7959bA'
     const hexToDecimal = hex => parseInt(hex, 16);
     const getCount = async () => {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const mainContract = new ethers.Contract(main, main_abi, provider);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const mainContract = new ethers.Contract(main, main_abi, provider);
 
-      const subCount = await mainContract.getSubContractCount();
-      console.log('Sub contract count')
-      console.log(hexToDecimal(subCount))
-      for (var i = 0; i < hexToDecimal(subCount); i++) {
+    const subCount = await mainContract.getSubContractCount();
+    console.log('Sub contract count')
+    console.log(hexToDecimal(subCount))
+    for (var i = 0; i < hexToDecimal(subCount); i++) {
 
+        var subContractAddress = await mainContract.getSubContract(i);
+        var subContract = new ethers.Contract(subContractAddress, sub_abi, provider);
 
-        this.data.activeBidsData.push({
-          ContratId: "10248",
-          CompanyType: 'Elektronik',
-          Explanation: 'Açıklama...',
-          Unit: 'adet',
-          ProductCode: 123,
-          İhale: 'İhale',
-        });
+        var subTenderDetail = await subContract.getTenderDetail();
+        console.log(subTenderDetail);
 
-        console.log(this.data.activeBidsData)
-      }
+        // eğer getTenderStatus == true ise ve getBidStart == true ise veriyi al.
+
+      /* this.data.activeBidsData.push({
+        ContratId: "10248",
+        CompanyType: 'Elektronik',
+        Explanation: 'Açıklama...',
+        Unit: 'adet',
+        ProductCode: 123,
+        İhale: 'İhale',
+      });
+      */
+      
+    }
     };
 
     getCount();
